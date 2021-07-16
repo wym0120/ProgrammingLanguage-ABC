@@ -47,9 +47,9 @@ val longest_string1 = foldl (fn (x,y) => if String.size(x) > String.size(y) then
 val longest_string2 = foldl (fn (x,y) => if String.size(x) >= String.size(y) then x else y) ""
 
 (* Solution 4 *)
-fun longest_string_helper f acc strl = foldl f acc strl
-fun longest_string3 strl = longest_string_helper (fn (x,y) => if String.size(x) > String.size(y) then x else y) "" strl
-fun longest_string4 strl = longest_string_helper (fn (x,y) => if String.size(x) >= String.size(y) then x else y) "" strl
+fun longest_string_helper f = List.foldl(fn(x,y) => if f(String.size x,String.size y) then x else y) ""
+val longest_string3 = longest_string_helper (fn(x, y) => x > y)
+val longest_string4 = longest_string_helper (fn(x, y) => x >= y)
 
 (* Solution 5 *)
 fun longest_capitalized strl = (longest_string1 o only_capitals) strl
